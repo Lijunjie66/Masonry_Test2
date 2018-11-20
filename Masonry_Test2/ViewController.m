@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIView *yellowView;
 @property (nonatomic, strong) UIView *blueView;
+@property (nonatomic, strong) UIView *greenView;
 
 @end
 
@@ -28,7 +29,7 @@
 - (void)layoutSubviews {
     
     // 设置内边距
-    /**
+    /** 1、
         设置yellow视图和self.view等大，并且有10的内边距
         注意，根据UIView的坐标系，下面的right和bottom进行了取反，
      */
@@ -52,10 +53,26 @@
     }];
     
     /*
-        更新约束
+        2、 更新约束
      */
     // 设置greenView的center和size，
+    self.greenView = [[UIView alloc] init];
+    self.greenView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:self.greenView];
+    [self.greenView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(300, 300));     // 这里通过mas_equalTo给size设置了基础数据类型的参数，参数为CGSize的结构体
+    }];
     
+    
+    // 为了更清楚的看出约束变化的效果，在显示两秒后更新结束
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // 指定更新size，其他约束不变
+        [self.greenView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(100, 100));
+        }];
+    });
     
     
     
