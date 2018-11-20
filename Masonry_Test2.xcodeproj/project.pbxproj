@@ -14,6 +14,7 @@
 		9CFD167E21A3BC07007ECAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CFD167D21A3BC07007ECAD8 /* Assets.xcassets */; };
 		9CFD168121A3BC07007ECAD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFD167F21A3BC07007ECAD8 /* LaunchScreen.storyboard */; };
 		9CFD168421A3BC07007ECAD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFD168321A3BC07007ECAD8 /* main.m */; };
+		9CFD169021A404C4007ECAD8 /* MasonryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFD168F21A404C4007ECAD8 /* MasonryTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		9CFD168221A3BC07007ECAD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CFD168321A3BC07007ECAD8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CFD168A21A3DD8E007ECAD8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9CFD168E21A404C4007ECAD8 /* MasonryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasonryTableViewController.h; sourceTree = "<group>"; };
+		9CFD168F21A404C4007ECAD8 /* MasonryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasonryTableViewController.m; sourceTree = "<group>"; };
 		AA042FCD8BA2F5D2FE4AA91B /* Pods-Masonry_Test2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Masonry_Test2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Masonry_Test2/Pods-Masonry_Test2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +73,8 @@
 				9CFD167521A3BC06007ECAD8 /* AppDelegate.m */,
 				9CFD167721A3BC06007ECAD8 /* ViewController.h */,
 				9CFD167821A3BC06007ECAD8 /* ViewController.m */,
+				9CFD168E21A404C4007ECAD8 /* MasonryTableViewController.h */,
+				9CFD168F21A404C4007ECAD8 /* MasonryTableViewController.m */,
 				9CFD168A21A3DD8E007ECAD8 /* PrefixHeader.pch */,
 				9CFD167A21A3BC06007ECAD8 /* Main.storyboard */,
 				9CFD167D21A3BC07007ECAD8 /* Assets.xcassets */,
@@ -196,6 +201,7 @@
 				9CFD167921A3BC06007ECAD8 /* ViewController.m in Sources */,
 				9CFD168421A3BC07007ECAD8 /* main.m in Sources */,
 				9CFD167621A3BC06007ECAD8 /* AppDelegate.m in Sources */,
+				9CFD169021A404C4007ECAD8 /* MasonryTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

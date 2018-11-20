@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MasonryTableViewController.h"
 
 @interface ViewController ()
 
@@ -14,8 +15,13 @@
 @property (nonatomic, strong) UIView *blueView;
 @property (nonatomic, strong) UIView *greenView;
 @property (nonatomic, strong) UIView *redView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) UILabel *textLabel;
+
+
+
+- (void)tableViewConstraints;
 
 @end
 
@@ -26,7 +32,11 @@
     
     [self layoutSubviews];
     
+    
+    
 }
+
+
 
 
 - (void)layoutSubviews {
@@ -134,8 +144,68 @@
 #pragma mark --☆☆☆  设置当前的约束乘以多少，例如下面这份例子： redView的宽度是self.view宽度的0.2倍
         make.width.equalTo(self.view).multipliedBy(0.2); // ☆☆☆ redView的宽度是self.view宽度的0.2倍 ☆☆☆
     }];
+
+    
+#pragma mark --  子视图等高练习
+    CGFloat padding = 50;
+    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view).insets(UIEdgeInsetsMake(padding, padding, 0, padding));
+        make.bottom.equalTo(self.blueView.mas_top).offset(-padding);
+    }];
+    
+    [self.blueView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).insets(UIEdgeInsetsMake(0, padding, 0, padding));
+        make.bottom.equalTo(self.yellowView.mas_top).offset(-padding);
+    }];
+    
+    [self.yellowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view).insets(UIEdgeInsetsMake(0, padding, padding, padding));
+        make.height.equalTo(@[self.blueView, self.redView]);
+    }];
+    
+    
+#pragma mark -- UIScrollview自动布局
+    /*
+     6 、布局小技巧：
+        给UIScrollView添加的约束是定义其frame，设置contentSize是定义其内部大小。
+        UIScrollView进行addSubview操作，都是将其子视图添加到contentView上。
+        所以，添加到UIScrollView上的子视图，对UIScrollView添加的约束都是作用于contentView上的。
+        只需要按照这样的思路给UIScrollView设置约束，就可以掌握设置约束的技巧了。
+     **/
+    
+    // 提前设置UIScrollView的 contentSize，并设置UIScrollview自身的约束
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.backgroundColor = [UIColor orangeColor];
+    self.scrollView.contentSize = CGSizeMake(1000, 1000);
+    [self.view addSubview:self.scrollView];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    // 虽然redView的get方法内部已经执行过addSubView操作，但是UIViewz始终以最后一次添加的父视图为准，也就是redViewz始终是在最后一次添加的父视图上
+    [self.scrollView addSubview:self.redView];
+    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.scrollView);
+        make.width.height.mas_equalTo(200);
+    }];
+    
+    [self.scrollView addSubview:self.blueView];
+    [self.blueView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.redView.mas_right);
+        make.top.equalTo(self.scrollView);
+        make.width.height.equalTo(self.redView);
+    }];
+    
+    [self.scrollView addSubview:self.greenView];
+    [self.greenView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView);
+        make.top.equalTo(self.redView.mas_bottom);
+        make.width.height.equalTo(self.redView);
+    }];
+    
     
 }
+
 
 
 @end
