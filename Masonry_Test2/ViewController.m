@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *yellowView;
 @property (nonatomic, strong) UIView *blueView;
 @property (nonatomic, strong) UIView *greenView;
+@property (nonatomic, strong) UIView *redView;
 
 @property (nonatomic, strong) UILabel *textLabel;
 
@@ -95,6 +96,44 @@
     self.textLabel.text = @"蓝光的能量较高，会对眼睛的视网膜色素上皮细胞造成伤害，包括细胞的衰老，死亡，严重的会导致失明。\n并且,\r随着年龄增加对蓝光损伤更加敏感，也会导致老年性黄斑病变。";
     self.textLabel.numberOfLines = 0; // 行数 自适应（默认为1单行，设置为0，自适应）
     
+    
+    /*
+      4、 如果想使用基础数据类型当做参数，Masonry为我们提供了“mas_XXX”格式的宏定义
+          这些宏定义会将传入的基础数据类型转换为NSNumber类型，这个过程叫做封箱。
+     
+          “mas_XXX”开头的宏定义，内部都是通过MASBoxValue()函数实现的
+          这样的宏定义主要有四个：mas_equalTo()、mas_offset()、大于等于、小于等于
+     **/
+    self.redView = [[UIView alloc] init];
+    self.redView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.redView];
+    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(100);
+    }];
+    
+    
+    /*
+        5、 设置约束优先级
+     Masonry为我们提供了三个默认的方法，priorityLow()、priorityMedium()、priorityHigh(),这三个方法内部对应着不同的默认优先级
+     除了这三个方法，我们还可以自己设置优先级的值，可以通过priority()方法来设置
+     **/
+//    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.view);
+//        make.width.equalTo(self.view).priorityLow();
+//        make.width.mas_equalTo(20).priorityHigh();
+//        make.height.equalTo(self.view).priority(200);
+//        make.height.mas_equalTo(100).priority(1000);
+//    }];
+
+    // 设置约束比例
+    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.height.mas_equalTo(30);
+#pragma mark --☆☆☆  设置当前的约束乘以多少，例如下面这份例子： redView的宽度是self.view宽度的0.2倍
+        make.width.equalTo(self.view).multipliedBy(0.2); // ☆☆☆ redView的宽度是self.view宽度的0.2倍 ☆☆☆
+    }];
     
 }
 
