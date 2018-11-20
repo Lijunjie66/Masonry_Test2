@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIView *blueView;
 @property (nonatomic, strong) UIView *greenView;
 
+@property (nonatomic, strong) UILabel *textLabel;
+
 @end
 
 @implementation ViewController
@@ -74,6 +76,24 @@
         }];
     });
     
+    /**
+        3、 大小等于 和 小于等于 某个值的约束
+     */
+    self.textLabel = [[UILabel alloc] init];
+//    self.textLabel.text = @"哈哈😆";
+//    self.textLable.textColor = [UIColor blackColor];    // 默认黑色
+//    self.textLable.font = [UIFont systemFontOfSize:15]; // 默认有高度
+    [self.view addSubview:self.textLabel];
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        // 设置宽度小于等于200
+        make.width.lessThanOrEqualTo(@200);
+        // 设置高度大于等于10
+        make.height.greaterThanOrEqualTo(@10);
+    }];
+    
+    self.textLabel.text = @"蓝光的能量较高，会对眼睛的视网膜色素上皮细胞造成伤害，包括细胞的衰老，死亡，严重的会导致失明。\n并且,\r随着年龄增加对蓝光损伤更加敏感，也会导致老年性黄斑病变。";
+    self.textLabel.numberOfLines = 0; // 行数 自适应（默认为1单行，设置为0，自适应）
     
     
 }
